@@ -7,6 +7,7 @@
         :normalize-data="normalizeData"
         @getReading="getReading"
         @togglePage="togglePage"
+        @updateList="fetchingData"
       />
     </Transition>
     <Transition name="fade">
@@ -31,13 +32,17 @@
   const cases = ref<ICases[]>()
   const normalizeData = ref<INormalizeData[]>([])
   const changePage = ref(false)
-  const currentPageData = ref()
+  const currentPageData = ref<INormalizeData[]>()
 
   onMounted(async() => {
+    fetchingData()
+  })
+
+  const fetchingData = async () => {
     notifications.value = await getNotificationsList()
     cases.value = await getCasesList()
     normalazingData()
-  })
+  }
 
   const normalazingData = () => {
     notifications.value?.forEach((el) => {

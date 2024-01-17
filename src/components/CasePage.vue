@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h1>Уведомление</h1>
+    <p class="main-title-descr">{{ props.pageData[0].cat }}</p>
     <div class="btn-container">
       <button class="btn" @click="emit('goBack')">Назад</button>
       <button class="btn" @click="emit('makeRead', props.pageData[0].id)">
@@ -27,9 +29,10 @@
 </template>
 
 <script setup lang="ts">
-  import SvgIcons from './icons/SvgIcons.vue';
+  import SvgIcons from './icons/SvgIcons.vue'
+  import { INormalizeData } from "../interfaces/notificationsList"
 
-  const props = defineProps(['pageData'])
+  const props = defineProps<{ pageData: INormalizeData[] }>()
   const emit = defineEmits(['goBack', 'makeRead'])
 </script>
 
