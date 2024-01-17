@@ -6,6 +6,7 @@
       <p class="main-title-descr">Показано {{ filteredData.length }} изменений</p>
       <div class="btn-container">
         <BaseSelect
+          v-if="props.cases"
           :options="props.cases" 
           @input="selectedCase"
           @reset="selectedValue = ''"
@@ -44,7 +45,7 @@
 
   const props = defineProps<{
     normalizeData: INormalizeData[], 
-    cases: ICases[]
+    cases?: ICases[]
   }>()
 
   const emit = defineEmits(['togglePage', 'getReading', 'fetchingData'])
@@ -59,6 +60,7 @@
   const selectedCase = (val: string) => {
     selectedValue.value = val
   }
+
 </script>
 
 <style scoped>
